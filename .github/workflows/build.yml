@@ -1,9 +1,9 @@
 name: Build Android APK
 
 on:
-  workflow_dispatch:        # кнопка "Run workflow" вручную
+  workflow_dispatch:
   push:
-    branches: [master, main]  # автозапуск при пуше
+    branches: [master, main]
 
 jobs:
   build:
@@ -27,12 +27,14 @@ jobs:
           java-version: 17
 
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
+        with:
+          packages: 'platform-tools'
 
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Expo Prebuild (generate android/)
+      - name: Expo Prebuild
         run: npx expo prebuild --platform android --clean
         env:
           CI: true
@@ -43,7 +45,7 @@ jobs:
           chmod +x gradlew
           ./gradlew assembleRelease --no-daemon
 
-      - name: Upload APK artifact
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: app-release-apk
