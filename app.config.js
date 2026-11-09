@@ -66,9 +66,9 @@ const IS_DEV = process.env.APP_VARIANT === 'development'
       typedRoutes: true, 
       reactCompiler: true, 
     }, 
-    extra: { 
-      router: { origin: false, }, 
-      eas: { projectId: /* ... */ }, 
+    extra: {
+  router: { origin: false },
+}, 
     }, 
   }, 
 }
