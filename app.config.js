@@ -1,4 +1,5 @@
-const IS_DEV = process.env.APP_VARIANT === 'development' module.exports = { 
+const IS_DEV = process.env.APP_VARIANT === 'development'
+  module.exports = { 
   expo: { 
     name: IS_DEV ? 'ChatterUI (DEV)' : 'ChatterUI', 
     newArchEnabled: true, 
